@@ -36,7 +36,7 @@ while opcao != 4:
     elif opcao == 1:
         print(f"Você entrou na caverna e encontrou um {caverna_aleatorio}!")
         if caverna_aleatorio in pokedex:
-            print('você já tem esse pokemom, não poderar capturar!')
+            print('você já tem esse pokemom, não poderá capturar!')
             continue
         opcao_caverna = int(input("Deseja tentar capturar este pokémon?(sim digite 1, nao digite 2): "))
         if opcao_caverna == 2:
@@ -64,7 +64,7 @@ while opcao != 4:
     if opcao == 2:
         print(f"Você entrou no mato e encontrou um {mato_aleatorio}")
         if caverna_aleatorio in pokedex:
-            print('você já tem esse pokemom, não poderar capturar!')
+            print('você já tem esse pokemom, não poderá capturar!')
             continue
         opcao_mato = int(input("Deseja tentar capturar este pokémon?(sim digite 1, nao digite 2): "))
         if opcao_mato == 2:
