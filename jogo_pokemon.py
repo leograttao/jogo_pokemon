@@ -73,7 +73,7 @@ while opcao != 4:
         elif opcao_mato == 1:
             if chance_mato <= porcentagem_de_captura_mato:
                     print(f"Você capturou o pokemon")
-                    pokedex.append(caverna_aleatorio)
+                    pokedex.append(mato_aleatorio)
             else:
                 tentativa = int(input("Você não capturou, mas tem mais 3 tentativas, deseja tentar?(sim digite 1 e nao digite 2): "))
                 if tentativa == 2:
