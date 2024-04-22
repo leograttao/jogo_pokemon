@@ -39,20 +39,20 @@ while opcao != 4:
             print('você já tem esse pokemon, não poderá capturar!')
             continue
         
-        opcao_caverna = int(input("Deseja tentar capturar este pokémon?(sim digite 1, nao digite 2): "))
+        opcao_caverna = input("Deseja tentar capturar este pokémon?(s/n): ")
         
-        if opcao_caverna == 2:
+        if opcao_caverna == "n":
             continue
-        elif opcao_caverna == 1:
+        elif opcao_caverna == "s":
             if chance_caverna <= porcentagem_de_captura_caverna:
                     print(f"Você capturou o pokemon")
                     pokedex.append(caverna_aleatorio)
             else:
-                tentativa = int(input(f"Você não capturou, mas tem mais 3 tentativas, deseja tentar? (sim digite 1 e nao digite 2): "))
+                tentativa = input(f"Você não capturou, mas tem mais 3 tentativas, deseja tentar? (s/n): ")
                 
-                if tentativa == 2:
+                if tentativa == "n":
                     break
-                elif tentativa == 1:
+                elif tentativa == "s":
                     for c in range(0,3):            
                         porcentagem_de_captura_caverna = 0.35
                         chance_caverna = random.random()
@@ -68,19 +68,19 @@ while opcao != 4:
         if caverna_aleatorio in pokedex:
             print('você já tem esse pokemon, não poderá capturar!')
             continue
-        opcao_mato = int(input("Deseja tentar capturar este pokémon?(sim digite 1, nao digite 2): "))
-        if opcao_mato == 2:
+        opcao_mato = input("Deseja tentar capturar este pokémon?(s/n): ")
+        if opcao_mato == "n":
             continue
     
-        elif opcao_mato == 1:
+        elif opcao_mato == "s":
             if chance_mato <= porcentagem_de_captura_mato:
                     print(f"Você capturou o pokemon")
                     pokedex.append(mato_aleatorio)
             else:
-                tentativa = int(input("Você não capturou, mas tem mais 3 tentativas, deseja tentar?(sim digite 1 e nao digite 2): "))
-                if tentativa == 2:
+                tentativa = input("Você não capturou, mas tem mais 3 tentativas, deseja tentar?(s/n): ")
+                if tentativa == "n":
                     break
-                elif tentativa == 1:
+                elif tentativa == "s":
                     for c in range(0,3):            
                         porcentagem_de_captura_mato = 0.5
                         chance_mato = random.random()
