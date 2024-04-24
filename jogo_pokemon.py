@@ -41,18 +41,18 @@ while opcao != 4:
         
         opcao_caverna = input("Deseja tentar capturar este pokémon?(s/n): ")
         
-        if opcao_caverna == "n":
+        if opcao_caverna == "n" or opcao_caverna == "nao":
             continue
-        elif opcao_caverna == "s":
+        elif opcao_caverna == "s" or opcao_caverna == "sim":
             if chance_caverna <= porcentagem_de_captura_caverna:
                     print(f"Você capturou o pokemon")
                     pokedex.append(caverna_aleatorio)
             else:
-                tentativa = input(f"Você não capturou, mas tem mais 3 tentativas, deseja tentar? (s/n): ")
+                tentativa = input(f"Você não capturou, mas tem mais 3 tentativas, deseja tentar?(s/n): ")
                 
-                if tentativa == "n":
+                if tentativa == "n" or tentativa == "nao":
                     break
-                elif tentativa == "s":
+                elif tentativa == "s" or tentativa == "sim":
                     for c in range(0,3):            
                         porcentagem_de_captura_caverna = 0.35
                         chance_caverna = random.random()
@@ -62,25 +62,30 @@ while opcao != 4:
                             pokedex.append(caverna_aleatorio)
                             break 
                         else:
-                            print("Você nao capturou")                                                 
+                            print("Você nao capturou") 
+                            tentativa2 = input("Deseja tentar capturar novamente?(s/n) ") 
+                            if tentativa2 == "s" or tentativa2 == "sim":  
+                                continue 
+                            elif tentativa2 == "n" or tentativa2 == "nao":
+                                break                                           
     if opcao == 2:
         print(f"Você entrou no mato e encontrou um {mato_aleatorio}")
         if caverna_aleatorio in pokedex:
             print('você já tem esse pokemon, não poderá capturar!')
             continue
         opcao_mato = input("Deseja tentar capturar este pokémon?(s/n): ")
-        if opcao_mato == "n":
+        if opcao_mato == "n" or opcao_mato == "nao":
             continue
     
-        elif opcao_mato == "s":
+        elif opcao_mato == "s" or opcao_mato == "sim":
             if chance_mato <= porcentagem_de_captura_mato:
                     print(f"Você capturou o pokemon")
                     pokedex.append(mato_aleatorio)
             else:
                 tentativa = input("Você não capturou, mas tem mais 3 tentativas, deseja tentar?(s/n): ")
-                if tentativa == "n":
+                if tentativa == "n" or tentativa == "nao":
                     break
-                elif tentativa == "s":
+                elif tentativa == "s" or tentativa == "sim":
                     for c in range(0,3):            
                         porcentagem_de_captura_mato = 0.5
                         chance_mato = random.random()
@@ -90,7 +95,12 @@ while opcao != 4:
                             pokedex.append(mato_aleatorio)
                             break 
                         else:
-                            print("Você nao capturou") 
+                            print("Você nao capturou")
+                            tentativa3 = input("Deseja tentar capturar este pokemon?(s/n) ")
+                            if tentativa3 == "n" or tentativa3 == "nao":
+                                break
+                            elif tentativa3 == "s" or tentativa3 == "sim":
+                                continue
     
     elif opcao == 3:
         print(f"\nPokémon na sua Pokédex: {pokedex}")
