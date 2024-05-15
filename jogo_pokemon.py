@@ -1,14 +1,33 @@
 import random
 
+pokebolas = 3
 pokedex = []
 pokemons_mato = ["Pidgey","Scizor","Caterpie","Weedle","Pinsir","Pikachu","Bubasaur","Torterra","Snorlex","Chimchar"]
 pokemons_caverna = ["Rattata","Zubat","Eevee","Ditto","Tauros","Fuecoco","Axew","Slugma","Chansey","Darumaka"]
+pokemon_incial = ["Charmander","Squirtle","Bulbasaur"]
 
-print("Olá, sou o professor Carvalho, um pesquisador Pokémon.")
+def sorteio_pokemon(lista_pokemon):
+    pokemon_aleatorio = random.choice(lista_pokemon)
 
-nome_jogador = input("Antes de começarmos nossa jornada, qual é o seu nome: ")
+    return pokemon_aleatorio
 
-print(f"Ótimo, então você é {nome_jogador}!! Prepare-se para embarcar em uma aventura emocionante no mundo dos Pokémon!")
+sorteio_mato = sorteio_pokemon(pokemons_mato)
+sorteio_caverna = sorteio_pokemon(pokemons_caverna)
+
+def introducao(): 
+    print("Olá, sou o professor Carvalho, um pesquisador Pokémon.")
+    nome_jogador = input("Antes de começarmos nossa jornada, qual é o seu nome: ")
+    print(f"Ótimo, então você é {nome_jogador}!! Prepare-se para embarcar em uma aventura emocionante no mundo dos Pokémon!\n")
+    print("0-charmander\n1-squirtle\n2-Bulbasaur\n")
+
+def menu_principal():
+    print("\n\nO que você deseja fazer?\n1. Entrar na caverna\n2. Entrar no mato\n3. Listar pokémon da pokédex\n4. Sair")
+
+introducao()
+escolha_incial = int(input("Digite o número do seu pokémon inicial para começar sua jornada pokémon: "))
+pokedex.append(pokemon_incial[escolha_incial])
+print(f"\nParabéns, vc escolheu o {pokemon_incial[escolha_incial]} como seu primeiro pokémon!!\n")
+
 
 opcao = 0
 
@@ -18,88 +37,107 @@ while opcao != 4:
     porcentagem_de_captura_caverna = 0.35
     chance_caverna = random.random()
     chance_mato = random.random()
-    
-    caverna_aleatorio = random.choice(pokemons_caverna)
-    mato_aleatorio = random.choice(pokemons_mato)
 
-    
-    print("\n\nO que você deseja fazer?\n1. Entrar na caverna\n2. Entrar no mato\n3. Listar pokémon da pokédex\n4. Sair")
+
+    menu_principal()
+
     opcao = int(input("Escolha uma opção: "))
     
     if opcao > 4 or opcao < 0:
         print("\n\nErro, selecione entre 1 e 4\n\n")
         continue  
+    elif pokebolas == 0:
+        print("Suas pokebolas acabaram!!!")
+        break
     elif opcao == 4:
         print("Estarei te esperando para continuar sua jornada Pokémon!!")
         break
     
     elif opcao == 1:
-        print(f"Você entrou na caverna e encontrou um {caverna_aleatorio}!")
-        if caverna_aleatorio in pokedex:
+        chance_pokebolas = random.randint(0,2)
+        pokebolas += chance_pokebolas
+        print("-"*30)
+        print(f"Você encontrou {chance_pokebolas} pokebolas")
+        print(f"Pokebolas: {pokebolas}")
+        print(f"Você entrou na caverna e encontrou um {sorteio_caverna}!\n")
+        if sorteio_caverna in pokedex:
             print('você já tem esse pokemon, não poderá capturar!')
             continue
         
-        opcao_caverna = input("Deseja tentar capturar este pokémon?(s/n): ")
+        opcao_caverna = input("Deseja tentar capturar este pokémon, irá gastar uma pokebola?(s/n): ")
         
-        if opcao_caverna == "n" or opcao_caverna == "nao":
+        if opcao_caverna == "n" or opcao_caverna == "não" or opcao_caverna == "nao":
             continue
         elif opcao_caverna == "s" or opcao_caverna == "sim":
             if chance_caverna <= porcentagem_de_captura_caverna:
                     print(f"Você capturou o pokemon")
-                    pokedex.append(caverna_aleatorio)
+                    pokedex.append(sorteio_caverna)
+                    pokebolas -= 1
             else:
-                tentativa = input(f"Você não capturou, mas tem mais 3 tentativas, deseja tentar?(s/n): ")
-                
-                if tentativa == "n" or tentativa == "nao":
-                    break
+                pokebolas -= 1
+                tentativa = input(f"Você não capturou, mas tem mais {pokebolas} tentativas, deseja tentar e gastar suas pokebolas?(s/n): ")
+                if tentativa == "n" or tentativa == "não" or tentativa == "nao":
+                    continue
                 elif tentativa == "s" or tentativa == "sim":
-                    for c in range(0,3):            
+                    for c in range(pokebolas):            
                         porcentagem_de_captura_caverna = 0.35
                         chance_caverna = random.random()
                         
                         if chance_caverna <= porcentagem_de_captura_caverna:
                             print(f"Você capturou o pokémon") 
-                            pokedex.append(caverna_aleatorio)
+                            pokedex.append(sorteio_caverna)
+                            pokebolas -= 1
                             break 
                         else:
                             print("Você nao capturou") 
                             tentativa2 = input("Deseja tentar capturar novamente?(s/n) ") 
-                            if tentativa2 == "s" or tentativa2 == "sim":  
+                            if tentativa2 == "s" or tentativa2 == "sim": 
+                                pokebolas -= 1 
                                 continue 
-                            elif tentativa2 == "n" or tentativa2 == "nao":
-                                break                                           
+                            elif tentativa2 == "n" or tentativa2 == "não" or tentativa2 == "nao":
+                                break                                         
     if opcao == 2:
-        print(f"Você entrou no mato e encontrou um {mato_aleatorio}")
-        if caverna_aleatorio in pokedex:
+        chance_pokebolas = random.randint(0,2)
+        pokebolas += chance_pokebolas
+        print("-"*30)
+        print(f"Você encontrou {chance_pokebolas} pokebolas")
+        print(f"Pokebolas: {pokebolas}")
+        print(f"Você entrou no mato e encontrou um {sorteio_mato}\n")
+        if sorteio_mato in pokedex:
             print('você já tem esse pokemon, não poderá capturar!')
             continue
-        opcao_mato = input("Deseja tentar capturar este pokémon?(s/n): ")
-        if opcao_mato == "n" or opcao_mato == "nao":
+        opcao_mato = input("Deseja tentar capturar este pokémon, irá gastar uma pokebola?(s/n): ")
+        if opcao_mato == "n" or opcao_mato == "não" or opcao_mato == "nao":
             continue
     
         elif opcao_mato == "s" or opcao_mato == "sim":
             if chance_mato <= porcentagem_de_captura_mato:
                     print(f"Você capturou o pokemon")
-                    pokedex.append(mato_aleatorio)
+                    pokedex.append(sorteio_mato)
+                    pokebolas -= 1
             else:
-                tentativa = input("Você não capturou, mas tem mais 3 tentativas, deseja tentar?(s/n): ")
-                if tentativa == "n" or tentativa == "nao":
-                    break
+                pokebolas -= 1
+                tentativa = input(f"Você não capturou, mas tem mais {pokebolas} tentativas, deseja tentar e gastar suas pokebolas?(s/n): ")
+                if tentativa == "n" or tentativa == "não" or tentativa == "nao":
+                    continue
                 elif tentativa == "s" or tentativa == "sim":
-                    for c in range(0,3):            
+                    for c in range(pokebolas):            
                         porcentagem_de_captura_mato = 0.5
                         chance_mato = random.random()
                         
                         if chance_mato <= porcentagem_de_captura_mato:
                             print(f"Você capturou o pokémon") 
-                            pokedex.append(mato_aleatorio)
+                            pokedex.append(sorteio_mato)
+                            pokebolas -= 1
                             break 
                         else:
                             print("Você nao capturou")
+                            pokebolas -= 1
                             tentativa3 = input("Deseja tentar capturar este pokemon?(s/n) ")
-                            if tentativa3 == "n" or tentativa3 == "nao":
+                            if tentativa3 == "n" or tentativa3 == "não" or tentativa3 == "nao":
                                 break
                             elif tentativa3 == "s" or tentativa3 == "sim":
+                                pokebolas -= 1
                                 continue
     
     elif opcao == 3:
