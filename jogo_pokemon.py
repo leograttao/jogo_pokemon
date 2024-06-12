@@ -48,7 +48,7 @@ Charizard = ["Charizard",120,30,120]
 Blastoise = ["Blastoise",120,30,120]
 Venusaur = ["Venusaur",120,30,120]
 
-pokemons_mato = [Pidgey,Scizor,Caterpie,Weedle,Pinsir,Pikachu,Torterra,Snorlex,Chimchar,Venusaur,Blastoise]
+pokemons_mato = [Pidgey,Scizor,Caterpie,Weedle,Pinsir,Pikachu,Torterra,Snorlex,Chimchar,Blastoise,Venusaur]
 pokemons_caverna = [Rattata,Zubat,Eevee,Haunter,Tauros,Fuecoco,Axew,Slugma,Chansey,Darumaka,Charizard]
 pokemon_incial = [Charizard,Blastoise,Venusaur]
 pokemon_agua= [psyduck,froakie, greninja, Feraligatr, Swampert, kyogre ]
@@ -143,8 +143,14 @@ while opcao != 6:
         print(f"Você encontrou {chance_pokebolas} pokebolas")
         print(f"Pokebolas: {pokebolas}")
         print(f"Você entrou na caverna e encontrou um {pokemon_sorteado_caverna[0]}!\n")
-        if pokemon_sorteado_caverna[0] in pokedex:
-            print("você já tem esse pokemon, não poderá capturar!")
+        ja_tem_pokemon = False
+        for pokemon in pokedex:
+            if pokemon[0] == pokemon_sorteado_caverna[0]:
+                ja_tem_pokemon = True
+                break
+        
+        if ja_tem_pokemon:
+            print("Você já tem esse Pokémon, não poderá capturar!")
             continue
 
         batalha_caverna = input("Deseja batalhar contra esse pokemon e caso vença, poderá tentar capturar ele?(s/n): ")
@@ -221,8 +227,14 @@ while opcao != 6:
         print(f"Você encontrou {chance_pokebolas} pokebolas")
         print(f"Pokebolas: {pokebolas}")
         print(f"Você entrou no mato e encontrou um {pokemon_sorteado_mato[0]}\n")
-        if pokemon_sorteado_mato[0] in pokedex:
-            print("você já tem esse pokemon, não poderá capturar!")
+        ja_tem_pokemons = False
+        for pokemons in pokedex:
+            if pokemons[0] == pokemon_sorteado_mato[0]:
+                ja_tem_pokemons = True
+                break
+        
+        if ja_tem_pokemons:
+            print("Você já tem esse Pokémon, não poderá capturar!")
             continue
 
         batalha_mato = input("Deseja batalhar contra esse pokemon e caso vença, poderá tentar capturar ele?(s/n): ")
@@ -583,7 +595,7 @@ while opcao != 6:
                                     if tentativa_ginasio3 == "n" or tentativa_ginasio3 == "não" or tentativa_ginasio3 == "nao":
                                         break
                                     elif tentativa_ginasio3 == "s" or tentativa_ginasio3 == "sim":
-                                        for c in range(pokebolas):            
+                                        for po in range(pokebolas):            
                                             porcentagem_de_captura_ginasio = 0.5
                                             chance_ginasio = random.random()
                             
